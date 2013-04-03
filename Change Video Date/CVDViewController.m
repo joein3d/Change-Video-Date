@@ -118,16 +118,16 @@
     session.outputFileType = AVFileTypeQuickTimeMovie;
     session.outputURL = outURL;
     NSArray *existingMetadata = asset.commonMetadata;
-    if ( !self.metadataFormatter ) {
-        self.metadataFormatter = [[NSDateFormatter alloc] init];
-        [self.metadataFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssZ"];
-    }
     NSMutableArray *newMetadata = [NSMutableArray arrayWithCapacity:existingMetadata.count];
     for ( AVMetadataItem *item in existingMetadata ) {
         if ( [item.key isEqual:AVMetadataQuickTimeMetadataKeyCreationDate] ) {
             AVMutableMetadataItem *mutableItem = [item mutableCopy];
             id existingDateString = mutableItem.value;
             if ( [existingDateString isKindOfClass:[NSString class]] ) {
+                if ( !self.metadataFormatter ) {
+                    self.metadataFormatter = [[NSDateFormatter alloc] init];
+                    [self.metadataFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssZ"];
+                }
                 NSDate *existingDate = [self.metadataFormatter dateFromString:existingDateString];
                 NSDate *newDate = [existingDate dateByAddingTimeInterval:interval];
                 NSString *newDateString = [self.metadataFormatter stringFromDate:newDate];
