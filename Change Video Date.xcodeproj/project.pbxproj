@@ -13,6 +13,9 @@
 		D8D9CB60170C4E44009BCDD3 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = D8D9CB5E170C4E44009BCDD3 /* Credits.rtf */; };
 		D8D9CB63170C4E44009BCDD3 /* RAAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D8D9CB62170C4E44009BCDD3 /* RAAppDelegate.m */; };
 		D8D9CB66170C4E44009BCDD3 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8D9CB64170C4E44009BCDD3 /* MainMenu.xib */; };
+		D8D9CB6D170C4E4E009BCDD3 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8D9CB6C170C4E4E009BCDD3 /* AVFoundation.framework */; };
+		D8D9CB70170C5111009BCDD3 /* CVDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8D9CB6F170C5111009BCDD3 /* CVDViewController.m */; };
+		D8D9CB73170C5123009BCDD3 /* CVDController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8D9CB72170C5123009BCDD3 /* CVDController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +32,11 @@
 		D8D9CB61170C4E44009BCDD3 /* RAAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RAAppDelegate.h; sourceTree = "<group>"; };
 		D8D9CB62170C4E44009BCDD3 /* RAAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RAAppDelegate.m; sourceTree = "<group>"; };
 		D8D9CB65170C4E44009BCDD3 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		D8D9CB6C170C4E4E009BCDD3 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		D8D9CB6E170C5111009BCDD3 /* CVDViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVDViewController.h; sourceTree = "<group>"; };
+		D8D9CB6F170C5111009BCDD3 /* CVDViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVDViewController.m; sourceTree = "<group>"; };
+		D8D9CB71170C5123009BCDD3 /* CVDController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVDController.h; sourceTree = "<group>"; };
+		D8D9CB72170C5123009BCDD3 /* CVDController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVDController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -36,6 +44,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D8D9CB6D170C4E4E009BCDD3 /* AVFoundation.framework in Frameworks */,
 				D8D9CB50170C4E44009BCDD3 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -46,6 +55,7 @@
 		D8D9CB43170C4E44009BCDD3 = {
 			isa = PBXGroup;
 			children = (
+				D8D9CB6C170C4E4E009BCDD3 /* AVFoundation.framework */,
 				D8D9CB55170C4E44009BCDD3 /* Change Video Date */,
 				D8D9CB4E170C4E44009BCDD3 /* Frameworks */,
 				D8D9CB4D170C4E44009BCDD3 /* Products */,
@@ -85,6 +95,10 @@
 				D8D9CB61170C4E44009BCDD3 /* RAAppDelegate.h */,
 				D8D9CB62170C4E44009BCDD3 /* RAAppDelegate.m */,
 				D8D9CB64170C4E44009BCDD3 /* MainMenu.xib */,
+				D8D9CB71170C5123009BCDD3 /* CVDController.h */,
+				D8D9CB72170C5123009BCDD3 /* CVDController.m */,
+				D8D9CB6E170C5111009BCDD3 /* CVDViewController.h */,
+				D8D9CB6F170C5111009BCDD3 /* CVDViewController.m */,
 				D8D9CB56170C4E44009BCDD3 /* Supporting Files */,
 			);
 			path = "Change Video Date";
@@ -169,6 +183,8 @@
 			files = (
 				D8D9CB5C170C4E44009BCDD3 /* main.m in Sources */,
 				D8D9CB63170C4E44009BCDD3 /* RAAppDelegate.m in Sources */,
+				D8D9CB70170C5111009BCDD3 /* CVDViewController.m in Sources */,
+				D8D9CB73170C5123009BCDD3 /* CVDController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
