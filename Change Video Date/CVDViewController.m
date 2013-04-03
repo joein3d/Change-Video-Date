@@ -10,7 +10,8 @@
 #import <AVFoundation/AVFoundation.h>
 
 @interface CVDViewController ()
-@property (nonatomic, strong) NSDateFormatter *nowFormatter;
+@property (nonatomic, strong) NSDateFormatter *nowDateFormatter;
+@property (nonatomic, strong) NSDateFormatter *nowTimeFormatter;
 @property (nonatomic, strong) NSDateFormatter *metadataFormatter;
 
 @end
@@ -22,7 +23,6 @@
     self.minuteField.enabled = enabled;
     self.secondField.enabled = enabled;
     self.directionSegmentedControl.enabled = enabled;
-    
 }
 
 - (double)timeShiftInterval {
@@ -36,8 +36,6 @@
     }
     return timeShiftInterval;
 }
-
-
 
 - (void)exportURLs:(NSArray *)urls toURL:(NSURL *)url{
     if ( [urls count] ) {
@@ -65,7 +63,7 @@
 
 - (IBAction)doIt:(id)sender {
     NSError *error = nil;
-    [self.view resignFirstResponder];
+    [self.view.window makeFirstResponder:nil];
     if ( error ) {
         [[NSAlert alertWithError:error] runModal];
     } else {
@@ -82,13 +80,23 @@
         [panel beginWithCompletionHandler:^(NSInteger result) {
             if ( [panel.URLs count] ) {
                 NSURL *outURL = [[NSFileManager defaultManager] URLForDirectory:NSMoviesDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:YES error:nil];
-                outURL = [outURL URLByAppendingPathComponent:@"Change Video Date"];
-                if ( !self.nowFormatter ) {
-                    self.nowFormatter = [[NSDateFormatter alloc] init];
-                    [self.nowFormatter setDateStyle:NSDateFormatterFullStyle];
+                outURL = [outURL URLByAppendingPathComponent:@"Change Video Date" isDirectory:YES];
+                if ( !self.nowDateFormatter ) {
+                    self.nowDateFormatter = [[NSDateFormatter alloc] init];
+                    [self.nowDateFormatter setDateStyle:NSDateFormatterLongStyle];
+                    [self.nowDateFormatter setTimeStyle:NSDateFormatterNoStyle];
                 }
-                NSString *folderName = [self.nowFormatter stringFromDate:[NSDate date]];
-                outURL = [outURL URLByAppendingPathComponent:folderName];
+                NSDate *now = [NSDate date];
+                NSString *folderName = [self.nowDateFormatter stringFromDate:now];
+                outURL = [outURL URLByAppendingPathComponent:folderName isDirectory:YES];
+                
+                if ( !self.nowTimeFormatter ) {
+                    self.nowTimeFormatter = [[NSDateFormatter alloc] init];
+                    [self.nowTimeFormatter setDateFormat:@"H.mm.ss a"];
+                }
+                
+                NSString *timeFolderName = [self.nowTimeFormatter stringFromDate:now];
+                outURL = [outURL URLByAppendingPathComponent:timeFolderName isDirectory:YES];
                 [[NSFileManager defaultManager] createDirectoryAtURL:outURL withIntermediateDirectories:YES attributes:nil error:nil];
                 [[NSWorkspace sharedWorkspace] openURL:outURL];
                 [self exportURLs:panel.URLs toURL:outURL];
@@ -114,7 +122,6 @@
         self.metadataFormatter = [[NSDateFormatter alloc] init];
         [self.metadataFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssZ"];
     }
-  
     NSMutableArray *newMetadata = [NSMutableArray arrayWithCapacity:existingMetadata.count];
     for ( AVMetadataItem *item in existingMetadata ) {
         if ( [item.key isEqual:AVMetadataQuickTimeMetadataKeyCreationDate] ) {

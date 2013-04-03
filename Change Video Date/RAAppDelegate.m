@@ -13,8 +13,12 @@
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
     // Insert code here to initialize your application
+    self.window.delegate = self;
 }
 
+- (void)windowWillClose:(NSNotification *)notification {
+    [[NSApplication sharedApplication] terminate:self];
+}
 
 
 @end
